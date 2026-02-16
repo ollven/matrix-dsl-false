@@ -2,6 +2,7 @@ package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.Perfmon
+import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
@@ -38,6 +39,15 @@ changeBuildType(RelativeId("Build")) {
         }
         feature1.apply {
             enabled = false
+        }
+        add {
+            commitStatusPublisher {
+                vcsRootExtId = "${DslContext.settingsRoot.id}"
+                publisher = github {
+                    githubUrl = "https://api.github.com"
+                    authType = vcsRoot()
+                }
+            }
         }
     }
 }
