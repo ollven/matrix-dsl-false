@@ -1,6 +1,8 @@
 package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.*
+import jetbrains.buildServer.configs.kotlin.buildFeatures.Perfmon
+import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.ui.*
@@ -26,6 +28,16 @@ changeBuildType(RelativeId("Build")) {
         add {
             vcs {
             }
+        }
+    }
+
+    features {
+        val feature1 = find<Perfmon> {
+            perfmon {
+            }
+        }
+        feature1.apply {
+            enabled = false
         }
     }
 }
