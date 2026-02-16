@@ -2,6 +2,7 @@ package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildSteps.script
+import jetbrains.buildServer.configs.kotlin.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.ui.*
 
 /*
@@ -17,6 +18,13 @@ changeBuildType(RelativeId("Build")) {
             script {
                 id = "simpleRunner"
                 scriptContent = "ls"
+            }
+        }
+    }
+
+    triggers {
+        add {
+            vcs {
             }
         }
     }
