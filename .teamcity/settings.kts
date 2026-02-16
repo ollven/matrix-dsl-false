@@ -48,7 +48,7 @@ object Build : BuildType({
             param("two", listOf(
                 value("f")
             ))
-            groupArtifactsByBuild = false
+            groupArtifactsByBuild = true
         }
     }
 })
