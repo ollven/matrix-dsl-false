@@ -65,6 +65,7 @@ object Build : BuildType({
             param("two", listOf(
                 value("f")
             ))
+            groupArtifactsByBuild = false
         }
         commitStatusPublisher {
             vcsRootExtId = "${DslContext.settingsRoot.id}"
